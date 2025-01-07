@@ -15,9 +15,8 @@ class ContactBook:
         if self.validate_phone(contact.phone) and self.validate_email(contact.email):
             self.contacts.append(contact)
             self.save_contacts()
-            print(Fore.GREEN + "Контакт успішно додано.")
-        else:
-            print(Fore.RED + "Некоректний номер телефону або email.")
+            return True
+        return False
 
     # Валідує формат номера телефону за допомогою регулярного виразу
     def validate_phone(self, phone):
@@ -66,16 +65,14 @@ class ContactBook:
                     if hasattr(contact, key):
                         setattr(contact, key, value)
                 self.save_contacts()
-                print(Fore.GREEN + "Контакт успішно оновлено.")
-                return
-        print(Fore.RED + "Контакт не знайдено.")
-
+                return True
+        return False
     # Видаляє контакт з книги контактів
     def delete_contact(self, name):
         for contact in self.contacts:
             if contact.name == name:
                 self.contacts.remove(contact)
                 self.save_contacts()
-                print(Fore.GREEN + "Контакт успішно видалено.")
-                return
-        print(Fore.RED + "Контакт не знайдено.")
+                 
+                return True, "Контакт успішно видалено."
+        return False, "Контакт не знайдено."

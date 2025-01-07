@@ -1,0 +1,37 @@
+[
+	{
+		"name": "ira",
+		"address": "lviv",
+		"phone": "+380502636329",
+		"email": "samsonenko.iryna@gmail.com",
+		"birthday": "1988-02-15"
+	},
+	{
+		"name": "andrew",
+		"address": "",
+		"phone": "+3809765454",
+		"email": "sjhjhsj@my.net",
+		"birthday": "1987-06-11"
+	},
+	{
+		"name": "red",
+		"address": "kyiv",
+		"phone": "+3806574848",
+		"email": "bot@your.com",
+		"birthday": "1966-04-04"
+	},
+	{
+		"name": "max",
+		"address": "12345",
+		"phone": "+3809876543",
+		"email": "max@g.com",
+		"birthday": "1999-09-03"
+	},
+	{
+		"name": "ned",
+		"address": "london",
+		"phone": "+3807776655",
+		"email": "ned@n.com",
+		"birthday": "1999-09-24"
+	}
+]
