@@ -2,7 +2,7 @@ from contact_book import ContactBook
 from note_manager import NoteManager
 from contacts_handlers import handle_add_contact, handle_search_contacts, handle_edit_contact, handle_delete_contact, handle_show_birthdays 
 from notes_handlesrs import handle_add_note, handle_search_notes, handle_edit_note, handle_delete_note
-from colorama import Fore, init
+from colorama import Fore, Back, Style, init
 
 # Ініціалізація Colorama
 init(autoreset=True)
@@ -27,7 +27,10 @@ def main():
         choice = input(Fore.YELLOW + "Виберіть опцію: ")
 
         if choice == '1':
-            print(Fore.WHITE + "Напишіть 'Exit' в будь-якому інпуті для виходу в головне меню.")
+            print(
+                Back.CYAN + "Введіть " +
+                Fore.WHITE + Style.DIM + "'Exit'" +
+                Back.CYAN + Style.NORMAL + " в будь-якому інпуті для виходу в головне меню.")
             handle_add_contact(contacts)
         
         elif choice == '2':
