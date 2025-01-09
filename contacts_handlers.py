@@ -2,32 +2,61 @@ from models import Contact
 from datetime import datetime
 from colorama import Fore
 
+def confirm_exit():
+    confirmation = input(Fore.WHITE + "Ви впевнені, що хочете вийти? (Так/Ні): ").strip().lower()
+    return confirmation in ["так", "yes", "y"]
+
 def handle_add_contact(contacts):
-    name = input("Ім'я: ").strip()
-    while not name:
-        print(Fore.RED + "Ім'я не може бути порожнім.")
+    while True:
         name = input(Fore.YELLOW + "Ім'я: ").strip()
+        if name.lower() == "exit":
+            if confirm_exit():
+                return
+            continue
+        if not name:
+            print(Fore.RED + "Ім'я не може бути порожнім.")
+        else:
+            break
+    
+    while True:
+        address = input(Fore.YELLOW + "Адреса (можна залишити порожньою): ").strip()
+        if address.lower() == "exit":
+            if confirm_exit():
+                return
+            continue
+        break
 
-    address = input("Адреса (можна залишити порожнім): ").strip()
-
-    phone = input("Телефон (в форматі +1234567890): ").strip()
-    while not contacts.validate_phone(phone):
-        print(Fore.RED + "Некоректний номер телефону. Спробуйте ще раз.")
+    while True:
         phone = input(Fore.YELLOW + "Телефон (в форматі +1234567890): ").strip()
+        if phone.lower() == "exit":
+            if confirm_exit():
+                return
+            continue
+        if contacts.validate_phone(phone):
+            break
+        print(Fore.RED + "Некоректний номер телефону. Спробуйте ще раз.")
 
-    email = input("Email: ").strip()
-    while not contacts.validate_email(email):
-        print(Fore.RED + "Некоректний email. Спробуйте ще раз.")
+    while True:
         email = input(Fore.YELLOW + "Email: ").strip()
+        if email.lower() == "exit":
+            if confirm_exit():
+                return
+            continue
+        if contacts.validate_email(email):
+            break
+        print(Fore.RED + "Некоректний email. Спробуйте ще раз.")
 
-    birthday_input = input("День народження (DD-MM-YYYY): ").strip()
-    birthday = None
-    while not birthday:
+    while True:
+        birthday_input = input(Fore.YELLOW + "День народження (DD-MM-YYYY): ").strip()
+        if birthday_input.lower() == "exit":
+            if confirm_exit():
+                return
+            continue
         try:
             birthday = datetime.strptime(birthday_input, "%d-%m-%Y")
+            break
         except ValueError:
             print(Fore.RED + "Некоректний формат дати. Спробуйте ще раз.")
-            birthday_input = input(Fore.YELLOW + "День народження (DD-MM-YYYY): ").strip()
 
     contact = Contact(name, address, phone, email, birthday)
     contacts.add_contact(contact)

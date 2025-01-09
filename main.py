@@ -27,6 +27,7 @@ def main():
         choice = input(Fore.YELLOW + "Виберіть опцію: ")
 
         if choice == '1':
+            print(Fore.WHITE + "Напишіть 'Exit' в будь-якому інпуті для виходу в головне меню.")
             handle_add_contact(contacts)
         
         elif choice == '2':
