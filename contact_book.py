@@ -2,7 +2,6 @@ import json
 import re
 from datetime import datetime, timedelta
 from models import Contact
-from colorama import Fore, Style
 
 class ContactBook:
     def __init__(self, filename="contacts.json"):

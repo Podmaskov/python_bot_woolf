@@ -2,7 +2,7 @@ from contact_book import ContactBook
 from note_manager import NoteManager
 from contacts_handlers import handle_add_contact, handle_search_contacts, handle_edit_contact, handle_delete_contact, handle_show_birthdays 
 from notes_handlesrs import handle_add_note, handle_search_notes, handle_edit_note, handle_delete_note
-from colorama import Fore, Style, init
+from colorama import Fore, init
 
 # Ініціалізація Colorama
 init(autoreset=True)

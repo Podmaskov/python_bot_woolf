@@ -1,4 +1,4 @@
-from colorama import Fore, Style, init
+from colorama import Fore
 
 def handle_add_note(notes):
     content = input("Вміст нотатки: ").strip()

@@ -1,24 +1,24 @@
 from models import Contact
 from datetime import datetime
-from colorama import Fore, Style, init
+from colorama import Fore
 
 def handle_add_contact(contacts):
     name = input("Ім'я: ").strip()
     while not name:
         print(Fore.RED + "Ім'я не може бути порожнім.")
-        name = input("Ім'я: ").strip()
+        name = input(Fore.YELLOW + "Ім'я: ").strip()
 
     address = input("Адреса (можна залишити порожнім): ").strip()
 
     phone = input("Телефон (в форматі +1234567890): ").strip()
     while not contacts.validate_phone(phone):
         print(Fore.RED + "Некоректний номер телефону. Спробуйте ще раз.")
-        phone = input("Телефон (в форматі +1234567890): ").strip()
+        phone = input(Fore.YELLOW + "Телефон (в форматі +1234567890): ").strip()
 
     email = input("Email: ").strip()
     while not contacts.validate_email(email):
         print(Fore.RED + "Некоректний email. Спробуйте ще раз.")
-        email = input("Email: ").strip()
+        email = input(Fore.YELLOW + "Email: ").strip()
 
     birthday_input = input("День народження (DD-MM-YYYY): ").strip()
     birthday = None
@@ -27,7 +27,7 @@ def handle_add_contact(contacts):
             birthday = datetime.strptime(birthday_input, "%d-%m-%Y")
         except ValueError:
             print(Fore.RED + "Некоректний формат дати. Спробуйте ще раз.")
-            birthday_input = input("День народження (DD-MM-YYYY): ").strip()
+            birthday_input = input(Fore.YELLOW + "День народження (DD-MM-YYYY): ").strip()
 
     contact = Contact(name, address, phone, email, birthday)
     contacts.add_contact(contact)
