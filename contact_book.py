@@ -21,13 +21,13 @@ class ContactBook:
         return False
 
     @staticmethod
-    def validate_phone(self, phone):
+    def validate_phone(phone):
         """ Валідує формат номера телефону за допомогою регулярного виразу"""
         pattern = re.compile(r'^\+?\d{10,15}$')
         return bool(pattern.match(phone))
 
     @staticmethod
-    def validate_email(self, email):
+    def validate_email(email):
         """ Валідує формат email за допомогою регулярного виразу"""
         pattern = re.compile(r'^[\w\.-]+@[\w\.-]+\.\w+$')
         return bool(pattern.match(email))
