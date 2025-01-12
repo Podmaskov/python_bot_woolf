@@ -9,31 +9,36 @@ class ContactBook:
         self.filename = filename
         self.load_contacts()
 
-    # Додає новий контакт до книги контактів після валідації телефону та email
     def add_contact(self, contact):
+        """
+        Додає новий контакт до книги контактів 
+        після валідації телефону та email
+        """
         if self.validate_phone(contact.phone) and self.validate_email(contact.email):
             self.contacts.append(contact)
             self.save_contacts()
             return True
         return False
 
-    # Валідує формат номера телефону за допомогою регулярного виразу
+    @staticmethod
     def validate_phone(self, phone):
+        """ Валідує формат номера телефону за допомогою регулярного виразу"""
         pattern = re.compile(r'^\+?\d{10,15}$')
         return bool(pattern.match(phone))
 
-    # Валідує формат email за допомогою регулярного виразу
+    @staticmethod
     def validate_email(self, email):
+        """ Валідує формат email за допомогою регулярного виразу"""
         pattern = re.compile(r'^[\w\.-]+@[\w\.-]+\.\w+$')
         return bool(pattern.match(email))
     
-    # Зберігає контакт у файл
     def save_contacts(self):
+        """ Зберігає контакт у файл"""
         with open(self.filename, "w", encoding="utf-8") as file:
             json.dump([contact.to_dict() for contact in self.contacts], file, ensure_ascii=False, indent=4)
 
-    # Завантажує контакти з файлу
     def load_contacts(self):
+        """Завантажує контакти з файлу"""
         try:
             with open(self.filename, "r", encoding="utf-8") as file:
                 data = json.load(file)
@@ -41,8 +46,8 @@ class ContactBook:
         except (FileNotFoundError, json.JSONDecodeError):
             self.contacts = []
 
-    # Отримує контакти з днями народження протягом заданої кількості днів
     def upcoming_birthdays(self, days):
+        """Отримує контакти з днями народження протягом заданої кількості днів"""
         upcoming = []
         today = datetime.today()
         target_date = today + timedelta(days=days)
@@ -52,12 +57,13 @@ class ContactBook:
                 upcoming.append(contact)
         return upcoming
 
-    # Шукає контакти за іменем
     def search_contacts(self, name):
+        """ Шукає контакти за іменем"""
         return [contact for contact in self.contacts if name.lower() in contact.name.lower()]
 
-   # Редагує інформацію існуючого контакту
+
     def edit_contact(self, name, **kwargs):
+        """Редагує інформацію існуючого контакту"""
         for contact in self.contacts:
             if contact.name == name:
                 for key, value in kwargs.items():
@@ -66,8 +72,8 @@ class ContactBook:
                 self.save_contacts()
                 return True
         return False
-    # Видаляє контакт з книги контактів
     def delete_contact(self, name):
+        """Видаляє контакт з книги контактів"""
         for contact in self.contacts:
             if contact.name == name:
                 self.contacts.remove(contact)
